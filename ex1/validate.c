@@ -140,7 +140,6 @@ void task_2(int fd[2], char expr[MAX_TEXTLEN], char result[MAX_TEXTLEN])
 
     if (cpid == 0) {
         task_3(fd, expr);
-        close(fd[1]);
     } else {
         close(fd[1]);
         FILE *pipefile = fdopen(fd[0], "r");
