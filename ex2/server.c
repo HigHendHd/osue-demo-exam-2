@@ -122,7 +122,7 @@ void task_1a(void)
 {
     // REPLACE FOLLOWING LINE WITH YOUR SOLUTION
     // task_1a_DEMO(&shmfd, &shmp);
-    shmfd = shm_open(SHM_NAME, O_RDWR | O_CREAT, PERMISSIONS);
+    shmfd = shm_open(SHM_NAME, O_RDWR | O_CREAT | O_EXCL, PERMISSIONS);
     if (shmfd == -1) {
         error_exit("Error while opening shared memory.");
     }
@@ -158,17 +158,17 @@ void task_1b(void)
 {
     // REPLACE FOLLOWING LINE WITH YOUR SOLUTION
     // task_1b_DEMO(&sem_server, &sem_ready, &sem_client);
-    sem_server = sem_open(SEM_NAME_SERVER, O_RDWR | O_CREAT, PERMISSIONS, 0);
+    sem_server = sem_open(SEM_NAME_SERVER, O_RDWR | O_CREAT | O_EXCL, PERMISSIONS, 0);
     if (sem_server == SEM_FAILED ) {
         error_exit("Error occured in sem_open. 1");
     }
 
-    sem_ready = sem_open(SEM_NAME_READY, O_RDWR | O_CREAT, PERMISSIONS, 0);
+    sem_ready = sem_open(SEM_NAME_READY, O_RDWR | O_CREAT | O_EXCL, PERMISSIONS, 0);
     if (sem_ready == SEM_FAILED ) {
         error_exit("Error occured in sem_open. 2");
     }
 
-    sem_client = sem_open(SEM_NAME_CLIENT, O_RDWR | O_CREAT, PERMISSIONS, 1);
+    sem_client = sem_open(SEM_NAME_CLIENT, O_RDWR | O_CREAT | O_EXCL, PERMISSIONS, 1);
     if (sem_client == SEM_FAILED ) {
         error_exit("Error occured in sem_open. 3");
     }

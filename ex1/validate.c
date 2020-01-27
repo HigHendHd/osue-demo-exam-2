@@ -84,19 +84,21 @@ void task_1(char *iban, char expr[MAX_TEXTLEN])
     // task_1_DEMO(iban, expr);
     
     // move first 4 chars to the end
-    char firstBytes[5];
-    strncpy(firstBytes, iban, 4);
-    firstBytes[4] = '\0';
-    iban = iban + 4;
-    strcat(iban, firstBytes);
+    char firstChars[5];
+    strncpy(firstChars, iban, 4);
+    firstChars[4] = '\0';
+
+    char *newIban = malloc(strlen(iban) * sizeof(char) + 1);
+    strcpy(newIban, iban + 4);
+    strcat(newIban, firstChars);
 
     // replace all alphabetic chars
     int exprlen = 0;
-    for (int i = 0; i < strlen(iban); i++) {
-        if (isdigit(iban[i])) {
-            expr[exprlen++] = iban[i];
+    for (int i = 0; i < strlen(newIban); i++) {
+        if (isdigit(newIban[i])) {
+            expr[exprlen++] = newIban[i];
         } else {
-            int newNum = iban[i] - 55;
+            int newNum = newIban[i] - 55;
             sprintf(&expr[exprlen], "%d", newNum);
             exprlen = exprlen + 2;
         }
