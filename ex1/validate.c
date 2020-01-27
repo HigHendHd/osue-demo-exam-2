@@ -107,6 +107,7 @@ void task_1(char *iban, char expr[MAX_TEXTLEN])
 
     // add last bit to expression
     strcat(expr, " % 97");
+    free(newIban);
 }
 
 
